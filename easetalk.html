@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kee's EaseTalk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://i.pinimg.com/736x/40/bc/db/40bcdb6f28d82c6da2b80bf5d368afff.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 120%;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #e91e63;
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        h2.special {
+            font-family: 'Dancing Script', cursive; /* New font for this text */
+            color: #e91e63;
+            font-size: 22px; /* 1 size bigger than the default */
+            font-weight: normal; /* Unbold */
+            margin-bottom: 30px;
+        }
+        h2.communication {
+            font-family: 'Arial', sans-serif;
+            color: #e91e63;
+            font-size: 20px;
+            font-weight: normal; /* Unbold */
+            margin-bottom: 30px;
+        }
+        button {
+            margin: 15px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: 2px solid #e91e63;
+            background-color: #ffffff;
+            color: #e91e63;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #f8bbd0;
+        }
+        .history-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ffffff;
+            border: 2px solid #e91e63;
+            color: #e91e63;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .history-button:hover {
+            background-color: #f8bbd0;
+        }
+        .back-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #ffffff;
+            border: 2px solid #e91e63;
+            color: #e91e63;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .back-button:hover {
+            background-color: #f8bbd0;
+        }
+        .back-button::before {
+            content: '<';
+            margin-right: 8px;
+            font-size: 22px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        select, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 2px solid #e91e63;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+        .transcription-box {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #e91e63;
+            border-radius: 10px;
+            background-color: #fff0f6;
+            min-height: 150px;
+        }
+        .video-box {
+            margin-top: 30px;
+        }
+        .video-box video {
+            width: 100%;
+            max-width: 500px;
+            border: 2px solid #e91e63;
+            border-radius: 10px;
+        }
+        .history-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .history-list h3 {
+            color: #e91e63;
+        }
+        .history-list ul {
+            padding-left: 20px;
+        }
+        .history-list li {
+            margin-bottom: 10px;
+        }
+        .sign-language-image {
+            max-width: 100%;
+            margin-top: 20px;
+            border: 2px solid #e91e63;
+            border-radius: 10px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Homepage -->
+<div class="main-container" id="homepage">
+    <div class="container">
+        <button class="history-button" onclick="showPage('history')">History</button>
+        <h2 class="special">Specially for Differently Abled People</h2>
+        <h1>Kee's EaseTalk</h1>
+        <h2 class="communication">Communication Made Easy</h2>
+        <button onclick="showPage('speech_to_text')">Speech to Text</button>
+        <button onclick="showPage('signs_to_text')">Signs to Text</button>
+        <button onclick="showPage('text_to_sign')">Text to Sign</button>
+    </div>
+</div>
+
+<!-- Speech to Text Page -->
+<div class="main-container" id="speech_to_text" style="display:none;">
+    <div class="container">
+        <a class="back-button" onclick="showPage('homepage')">Back</a>
+        <h1>Speech to Text</h1>
+        <div class="section">
+            <label for="input-language">Select the language you're going to speak:</label>
+            <select id="input-language">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="ta">Tamil</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+                <option value="zh">Chinese (Simplified)</option>
+                <option value="ja">Japanese</option>
+                <option value="ar">Arabic</option>
+                <option value="ko">Korean</option>
+            </select>
+        </div>
+        <div class="section">
+            <label for="output-language">Select the language you want to translate to:</label>
+            <select id="output-language">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="ta">Tamil</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+                <option value="zh">Chinese (Simplified)</option>
+                <option value="ja">Japanese</option>
+                <option value="ar">Arabic</option>
+                <option value="ko">Korean</option>
+            </select>
+        </div>
+        <button id="start-btn">Start</button>
+        <button id="stop-btn">Stop</button>
+        <div class="transcription-box" id="transcription">
+            <!-- Transcription text will appear here -->
+        </div>
+    </div>
+</div>
+
+<!-- Signs to Text Page -->
+<div class="main-container" id="signs_to_text" style="display:none;">
+    <div class="container">
+        <a class="back-button" onclick="showPage('homepage')">Back</a>
+        <h1>Signs to Text</h1>
+        <div class="video-box">
+            <button id="start-video-btn">Start Camera</button>
+            <button id="stop-video-btn">Stop Camera</button>
+            <video id="video" autoplay></video>
+        </div>
+        <div class="transcription-box" id="transcription-signs">
+            <!-- Transcription text will appear here -->
+        </div>
+    </div>
+</div>
+
+<!-- Text to Sign Page -->
+<div class="main-container" id="text_to_sign" style="display:none;">
+    <div class="container">
+        <a class="back-button" onclick="showPage('homepage')">Back</a>
+        <h1>Text to Sign</h1>
+        <div class="section">
+            <label for="text-to-sign-input">Enter text to convert to sign language:</label>
+            <textarea id="text-to-sign-input" placeholder="Type your text here..."></textarea>
+        </div>
+        <button id="convert-btn">Convert</button>
+        <div class="sign-language-image">
+            <!-- Sign language image will appear here -->
+            <img id="sign-language-image" src="" alt="Sign Language Image">
+        </div>
+    </div>
+</div>
+
+<!-- History Page -->
+<div class="main-container" id="history" style="display:none;">
+    <div class="container">
+        <a class="back-button" onclick="showPage('homepage')">Back</a>
+        <h1>Conversation History</h1>
+        <div class="history-list">
+            <h3>Speech to Text History</h3>
+            <ul>
+                <!-- Add history items here -->
+            </ul>
+            <h3>Signs to Text History</h3>
+            <ul>
+                <!-- Add history items here -->
+            </ul>
+            <h3>Text to Sign History</h3>
+            <ul>
+                <!-- Add history items here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showPage(pageId) {
+        document.querySelectorAll('.main-container').forEach(function(container) {
+            container.style.display = 'none';
+        });
+        document.getElementById(pageId).style.display = 'flex';
+    }
+
+    // Speech to Text
+    document.getElementById('start-btn').addEventListener('click', function() {
+        // Add code to start speech recognition
+    });
+
+    document.getElementById('stop-btn').addEventListener('click', function() {
+        // Add code to stop speech recognition
+    });
+
+    // Signs to Text
+    let video = document.getElementById('video');
+    let startVideoBtn = document.getElementById('start-video-btn');
+    let stopVideoBtn = document.getElementById('stop-video-btn');
+    let mediaStream = null;
+
+    startVideoBtn.addEventListener('click', function() {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                video.srcObject = stream;
+                mediaStream = stream;
+            })
+            .catch(function(error) {
+                console.error('Error accessing camera: ', error);
+            });
+    });
+
+    stopVideoBtn.addEventListener('click', function() {
+        if (mediaStream) {
+            let tracks = mediaStream.getTracks();
+            tracks.forEach(function(track) {
+                track.stop();
+            });
+            video.srcObject = null;
+        }
+    });
+
+    // Text to Sign
+    document.getElementById('convert-btn').addEventListener('click', function() {
+        // Add code to convert text to sign language
+    });
+</script>
+
+</body>
+</html>
